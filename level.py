@@ -28,7 +28,7 @@ class Level:
                 y = map_array_index * TILESIZE
                 if tile == 'x':
                     # creates an instance of Tile(position(tuple), groups(array, because it can be in multiple groups at once))
-                    Tile((x,y),[self.visible_sprites])
+                    Tile((x,y),[self.visible_sprites, self.obstacle_sprites])
                 if tile == 'p':
                     Player((x,y),[self.visible_sprites])
 
