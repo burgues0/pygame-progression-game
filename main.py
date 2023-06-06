@@ -19,7 +19,7 @@ class Game:
                 #checking if the game is being closed
                 if event.type == pygame.QUIT:
                     pygame.quit()
-                    sys.exit()    
+                    sys.exit()
             self.screen.fill('black')
             self.level.run()
             pygame.display.update()

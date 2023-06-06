@@ -1,12 +1,14 @@
+import pathlib
 # game setup and configs
 FPS = 60
 TILESIZE = 64
 WIDTH = 1280
 HEIGHT = 720
+PATH = str(pathlib.Path(__file__).parent.resolve())
 
 PLAIN_FIELDS = [
-    ['x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x'],
-    ['x',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','x'],
+    ['x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x'],  #map arrays -> each row of tiles
+    ['x',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','x'],  #tile -> value that is contained inside each list item (x, , p, etc)
     ['x',' ','p',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','x'],
     ['x',' ',' ',' ',' ',' ',' ',' ',' ',' ','x','x','x',' ',' ',' ',' ',' ',' ','x'],
     ['x',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','x',' ',' ',' ',' ',' ',' ',' ','x'],
