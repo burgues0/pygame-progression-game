@@ -34,4 +34,5 @@ class Level:
 
     def run(self):
         # update and draw the sprites
-        pass
+        self.visible_sprites.draw(self.display_surface)
+        
