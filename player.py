@@ -6,6 +6,7 @@ class Player(pygame.sprite.Sprite):
         super().__init__(sprite_group)
         self.image = pygame.image.load(PATH + '/sprites/entities/player.png').convert_alpha()
         self.rect = self.image.get_rect(topleft = pos)
+        self.hitbox = self.rect.inflate(0, -26)
 
         self.direction = pygame.math.Vector2()
         self.speed = 5
@@ -25,26 +26,28 @@ class Player(pygame.sprite.Sprite):
     def move(self, speed):
         if self.direction.magnitude() != 0:
             self.direction = self.direction.normalize()
-        self.rect.x += self.direction.x * speed
+
+        self.hitbox.x += self.direction.x * speed
         self.collision('horizontal')
-        self.rect.y += self.direction.y * speed
+        self.hitbox.y += self.direction.y * speed
         self.collision('vertical')
+        self.rect.center = self.hitbox.center
 
     def collision(self, direction):
         if direction == 'horizontal':
             for sprites in self.obstacles:
-                if sprites.rect.colliderect(self.rect):
+                if sprites.hitbox.colliderect(self.hitbox):
                     if self.direction.x > 0:
-                        self.rect.right = sprites.rect.left
+                        self.hitbox.right = sprites.hitbox.left
                     if self.direction.x < 0:
-                        self.rect.left = sprites.rect.right
+                        self.hitbox.left = sprites.hitbox.right
         if direction == 'vertical':
             for sprites in self.obstacles:
-                if sprites.rect.colliderect(self.rect):
+                if sprites.hitbox.colliderect(self.hitbox):
                     if self.direction.y > 0:
-                        self.rect.bottom = sprites.rect.top
+                        self.hitbox.bottom = sprites.hitbox.top
                     if self.direction.y  < 0:
-                        self.rect.top = sprites.rect.bottom        
+                        self.hitbox.top = sprites.hitbox.bottom        
 
     def update(self):
         self.kb_input()
