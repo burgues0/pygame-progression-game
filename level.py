@@ -36,8 +36,9 @@ class Level:
 
     def run(self):
         # update and draw the sprites
-        self.visible_sprites.y_sort_draw(self.player)
+        self.visible_sprites.custom_draw(self.player)
         self.visible_sprites.update()
+
 #class created for sprite priorities in the camera
 class YSortCameraGroup(pygame.sprite.Group):
     def __init__(self):
@@ -48,7 +49,7 @@ class YSortCameraGroup(pygame.sprite.Group):
         self.half_height = self.display_surface.get_size()[1] // 2
         self.offset = pygame.math.Vector2()
 
-    def y_sort_draw(self, player):
+    def custom_draw(self, player):
         #getting the offset
         self.offset.x = player.rect.centerx - self.half_width
         self.offset.y = player.rect.centery - self.half_height
