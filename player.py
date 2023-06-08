@@ -8,7 +8,7 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(topleft = pos)
 
         self.direction = pygame.math.Vector2()
-        self.speed = 3
+        self.speed = 5
         self.obstacles = collision_sprites
     
     def kb_input(self):
@@ -25,7 +25,6 @@ class Player(pygame.sprite.Sprite):
     def move(self, speed):
         if self.direction.magnitude() != 0:
             self.direction = self.direction.normalize()
-
         self.rect.x += self.direction.x * speed
         self.collision('horizontal')
         self.rect.y += self.direction.y * speed
@@ -39,17 +38,15 @@ class Player(pygame.sprite.Sprite):
                         self.rect.right = sprites.rect.left
                     if self.direction.x < 0:
                         self.rect.left = sprites.rect.right
-
         if direction == 'vertical':
             for sprites in self.obstacles:
                 if sprites.rect.colliderect(self.rect):
                     if self.direction.y > 0:
                         self.rect.bottom = sprites.rect.top
                     if self.direction.y  < 0:
-                        self.rect.top = sprites.rect.bottom
-                        
+                        self.rect.top = sprites.rect.bottom        
 
     def update(self):
         self.kb_input()
         self.move(self.speed)
-     
+    
